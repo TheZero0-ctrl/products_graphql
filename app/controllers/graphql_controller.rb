@@ -14,6 +14,8 @@ class GraphqlController < ApplicationController
     }
     result = ProductsGraphqlSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
+  rescue ActiveRecord::RecordNotFound => e
+    handle_record_not_found_error(e)
   rescue StandardError => e
     raise e unless Rails.env.development?
     handle_error_in_development(e)
@@ -46,5 +48,9 @@ class GraphqlController < ApplicationController
     logger.error e.backtrace.join("\n")
 
     render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+  end
+
+  def handle_record_not_found_error(e)
+    render json: { errors: [{ message: e.message }] }, status: :not_found
   end
 end
