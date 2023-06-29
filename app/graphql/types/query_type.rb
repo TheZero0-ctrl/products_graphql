@@ -9,14 +9,16 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :products, [Types::ProductType], null: false, description: 'Retrive list of products'
+    field :products, [Types::ProductType], null: false, description: 'Retrive list of products' do
+      argument :page, Integer, required: false
+    end
 
-    field :product, Types::ProductType, null: true, description: 'Retrieve a product by ID' do
+    field :product, Types::ProductType, null: false, description: 'Retrieve a product by ID' do
       argument :id, ID, required: true
     end
 
-    def products
-      Product.all
+    def products(page: 1)
+      Product.all.page(page).per(10)
     end
 
     def product(id:)

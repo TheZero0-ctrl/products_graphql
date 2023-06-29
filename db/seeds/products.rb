@@ -8,6 +8,6 @@ Dir.glob(Rails.root.join('app', 'assets', 'images', 'seeds', 'product1', '*.jpg'
   product1.images.attach(io: File.open(file), filename: File.basename(file))
 end
 
-Dir.glob(Rails.root.join('app', 'assets', 'images', 'seeds', 'product_2', '*.jpg')) do |file|
+Dir.glob(Rails.root.join('app', 'assets', 'images', 'seeds', 'product2', '*.jpg')) do |file|
   product2.images.attach(io: File.open(file), filename: File.basename(file))
 end
