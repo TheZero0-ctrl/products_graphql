@@ -54,3 +54,7 @@ group :development do
   # gem "spring"
   gem 'graphiql-rails', '~> 1.8'
 end
+
+group :production do
+  gem 'aws-sdk-s3', '~> 1.126', require: false
+end

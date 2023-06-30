@@ -5,8 +5,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :code, presence: true, uniqueness: true
-  validates :images, content_type: { in: %w[image/jpeg image/gif image/png],
-                                     message: 'must be a valid image format' },
-                     size: { less_than: 5.megabytes,
-                             message: 'should be less than 5MB' }
+
+  validates :images, content_type: { in: %w[image/jpeg image/png image/gif], message: 'must be a valid image format' },
+                     size: { less_than: 5.megabytes, message: 'must be less than 5MB' }
 end

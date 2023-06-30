@@ -15,9 +15,10 @@ module Mutations
       product = Product.find(id)
 
       attributes = { name:, code: }.compact
+      product.assign_attributes(attributes)
+      attach_images(product, images)
 
-      if product.update(attributes)
-        attach_images(product, images)
+      if product.save
         { product:, errors: [] }
       else
         { product: nil, errors: product.errors.full_messages }

@@ -12,9 +12,8 @@ module Mutations
 
     def resolve(name:, code:, images: nil)
       product = Product.new(name:, code:)
-
+      attach_images(product, images)
       if product.save
-        attach_images(product, images)
         { product:, errors: [] }
       else
         { product: nil, errors: product.errors.full_messages }
