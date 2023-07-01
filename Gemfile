@@ -40,6 +40,7 @@ gem 'active_storage_validations'
 gem 'apollo_upload_server', '2.1'
 gem 'graphql', '~> 2.0', '>= 2.0.23'
 gem 'kaminari'
+gem 'sidekiq', '~> 7.1', '>= 7.1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

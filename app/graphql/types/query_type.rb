@@ -17,12 +17,20 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :bulk_upload, Types::BulkUploadType, null: false, description: 'Retrieve a bulk upload by ID' do
+      argument :id, ID, required: true
+    end
+
     def products(page: 1)
       Product.all.page(page).per(10)
     end
 
     def product(id:)
       Product.find(id)
+    end
+
+    def bulk_upload(id:)
+      BulkUpload.find(id)
     end
   end
 end
