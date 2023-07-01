@@ -4,6 +4,7 @@ class BulkUpload < ApplicationRecord
   has_one_attached :csv_file
 
   validates :csv_file, presence: true, content_type: 'csv', size: { less_than: 100.megabytes }
+  validates :resource_type, presence: true
 
   enum status: {
     pending: 'pending',
