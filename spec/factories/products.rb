@@ -6,7 +6,7 @@ FactoryBot.define do
     sequence(:code) { |n| "code#{n}" }
 
     after(:build) do |product|
-      Dir.glob(Rails.root.join('app', 'assets', 'images', 'seeds', 'product1', '*.jpg')) do |file|
+      Dir.glob(Rails.root.join('spec', 'support', 'assets', 'images', '*.jpg')) do |file|
         product.images.attach(io: File.open(file), filename: File.basename(file))
       end
     end
